@@ -22,28 +22,37 @@ export default function Home() {
     dispatch(fetchCountries());
   }, []);
   return (
-    <View style={{backgroundColor: '#fff', flex: 1, justifyContent: 'center'}}>
-      <View>
-        <Text style={styles.seeMore}>Top 5 countries in Covid-19 cases</Text>
-      </View>
-      {TopCountries.map(
-        (item: {ID: string; Country: string; TotalConfirmed: string}) => {
-          return (
-            <TouchableOpacity
-              key={item.ID}
-              style={styles.container}
-              onPress={() => navigation.navigate('CountriesDetaiels', {item})}>
-              <Text style={styles.title}>{item.Country}</Text>
-              <Text style={styles.title}>
-                Total Confirmed :{item.TotalConfirmed}
-              </Text>
-            </TouchableOpacity>
-          );
-        },
-      )}
-      <TouchableOpacity onPress={() => navigation.navigate('CountriesList')}>
-        <Text style={styles.seeMore}>See More</Text>
+    <View style={{flex: 1, backgroundColor: '#fff'}}>
+      <TouchableOpacity
+        style={styles.search}
+        onPress={() => navigation.navigate('Search')}>
+        <Text style={styles.title}>Search</Text>
       </TouchableOpacity>
+      <View style={{flex: 1, marginTop: 25}}>
+        <View>
+          <Text style={styles.seeMore}>Top 5 countries in Covid-19 cases</Text>
+        </View>
+        {TopCountries.map(
+          (item: {ID: string; Country: string; TotalConfirmed: string}) => {
+            return (
+              <TouchableOpacity
+                key={item.ID}
+                style={styles.container}
+                onPress={() =>
+                  navigation.navigate('CountriesDetaiels', {item})
+                }>
+                <Text style={styles.title}>{item.Country}</Text>
+                <Text style={styles.title}>
+                  Total Confirmed :{item.TotalConfirmed}
+                </Text>
+              </TouchableOpacity>
+            );
+          },
+        )}
+        <TouchableOpacity onPress={() => navigation.navigate('CountriesList')}>
+          <Text style={styles.seeMore}>See More</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -69,5 +78,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  search: {
+    borderWidth: 1,
+    alignItems: 'center',
+    height: 40,
+    width: '70%',
+    marginTop: 20,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    borderRadius: 25,
   },
 });

@@ -1,15 +1,13 @@
-import {put, takeLatest, call, select} from 'redux-saga/effects';
+import {put, takeLatest, call} from 'redux-saga/effects';
 import {getICountrie} from '../../network/General';
 import actions from '../../actions';
-import reactotron from 'reactotron-react-native';
 
-import store from '../../store';
-const {completeFetchCountries, FETCH_COUNTRIES} = actions;
+const {completeFetchCountries, FETCH_COUNTRIES}: any = actions;
 
-function* performFetchCountries({}) {
+function* performFetchCountries(): any {
   try {
     const result = yield call(getICountrie);
- 
+
     if (result.networkSuccess) {
       yield put(completeFetchCountries({data: result.data}));
     } else yield put(completeFetchCountries({data: []}));

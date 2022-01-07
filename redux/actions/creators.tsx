@@ -1,11 +1,11 @@
 import camelCase from 'lodash/camelCase';
 
-export const createAction = (type, ...props) => {
+export const createAction = (type: any, ...props: any) => {
   const actionCreatorName = camelCase(type);
 
-  const actionCreator = (data = {}) => {
-    const action = { type };
-    props.forEach(property => {
+  const actionCreator = (data: any = {}) => {
+    const action: any = {type};
+    props.forEach((property: string) => {
       if (data.hasOwnProperty(property)) {
         action[property] = data[property];
       } else {
@@ -15,5 +15,5 @@ export const createAction = (type, ...props) => {
     return action;
   };
 
-  return { [type]: type, [actionCreatorName]: actionCreator };
+  return {[type]: type, [actionCreatorName]: actionCreator};
 };

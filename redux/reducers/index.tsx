@@ -6,6 +6,6 @@ const appReducers = combineReducers({
   home,
 });
 
-export default (state, action) => {
+export default (state: any, action: any) => {
   return appReducers(state, action);
 };

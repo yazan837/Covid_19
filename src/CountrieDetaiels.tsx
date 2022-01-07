@@ -1,15 +1,11 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Text, View, ScrollView, StyleSheet} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {RootStateOrAny, useSelector} from 'react-redux';
-import reactotron from 'reactotron-react-native';
 import Moment from 'moment';
-export default function CountriesDetaiels({route}:any) {
-  
+export default function CountriesDetaiels({route}: any) {
   const item = route.params;
 
   return (
-    <ScrollView style={{backgroundColor: '#fff', flex: 1,padding:10}}>
+    <ScrollView style={{backgroundColor: '#fff', flex: 1, padding: 10}}>
       <View>
         <Text style={styles.title}>
           Covid-19 detailes in {item.item.Country}
@@ -35,10 +31,7 @@ export default function CountriesDetaiels({route}:any) {
         <Text style={styles.title}>New Recovered</Text>
         <Text style={styles.title}> {item.item.NewRecovered}</Text>
       </View>
-      <View style={styles.row}>
-        <Text style={styles.title}>Total Recovered</Text>
-        <Text style={styles.title}> {item.item.TotalRecovered}</Text>
-      </View>
+
       <View style={styles.row}>
         <Text style={styles.title}>Date</Text>
         <Text style={styles.title}>
@@ -49,7 +42,6 @@ export default function CountriesDetaiels({route}:any) {
   );
 }
 const styles = StyleSheet.create({
- 
   title: {
     color: 'black',
     fontSize: 18,

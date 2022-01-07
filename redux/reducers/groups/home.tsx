@@ -2,12 +2,12 @@ import actions from '../../actions/index';
 import {combineReducers} from 'redux';
 import reactotron from 'reactotron-react-native';
 
-const {FETCH_COUNTRIES, COMPLETE_FETCH_COUNTRIES} = actions;
+const {FETCH_COUNTRIES, COMPLETE_FETCH_COUNTRIES}: any = actions;
 
 const initState = false;
 
 //for films
-const isFethingCountries = (state = initState, action) => {
+const isFethingCountries = (state = initState, action: any) => {
   switch (action.type) {
     case FETCH_COUNTRIES: {
       return true;
@@ -20,7 +20,7 @@ const isFethingCountries = (state = initState, action) => {
     }
   }
 };
-const isFethingCountriesError = (state = initState, action) => {
+const isFethingCountriesError = (state = initState, action: any) => {
   switch (action.type) {
     case COMPLETE_FETCH_COUNTRIES: {
       return !action.data.networkSuccess;
@@ -30,7 +30,7 @@ const isFethingCountriesError = (state = initState, action) => {
     }
   }
 };
-const Countries = (state = [], action) => {
+const Countries = (state = [], action: any) => {
   switch (action.type) {
     case COMPLETE_FETCH_COUNTRIES:
       return action.data;
@@ -39,12 +39,12 @@ const Countries = (state = [], action) => {
       return state;
   }
 };
-const TopFive = (state = [], action) => {
+const TopFive = (state = [], action: any) => {
   switch (action.type) {
     case COMPLETE_FETCH_COUNTRIES:
       return action.data
-        .sort((a, b) => b.TotalConfirmed - a.TotalConfirmed)
-        .filter((r, i) => i < 5);
+        .sort((a: any, b: any) => b.TotalConfirmed - a.TotalConfirmed)
+        .filter((r: any, i: any) => i < 5);
 
     default:
       return state;
