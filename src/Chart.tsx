@@ -5,20 +5,14 @@ import {LineChart} from 'react-native-chart-kit';
 import {useDispatch, RootStateOrAny, useSelector} from 'react-redux';
 import reactotron from 'reactotron-react-native';
 import {RootStackParamList} from './navigation/StackNavigator';
-import actions from '../redux/actions/index';
 
-const {fetchAll}: any = actions;
 export default function Chart() {
-  type homeScreenProp = StackNavigationProp<RootStackParamList, 'HomePage'>;
   const Totall = useSelector((state: RootStateOrAny) => state.home.Total);
+  const numbers = Totall.map((el: {TotalConfirmed: any}) => el.TotalConfirmed);
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchAll());
-  }, []);
   return (
     <ScrollView style={{backgroundColor: '#fff', flex: 1}}>
-      <View>
+      <View style={{justifyContent: 'center', alignItems: 'center'}}>
         <Text>General Covid-19 in last months</Text>
         <LineChart
           data={{
@@ -26,17 +20,17 @@ export default function Chart() {
             datasets: [
               {
                 data: [
-                  Math.random() * Totall.TotalConfirmed,
-                  Math.random() * Totall.TotalConfirmed,
-                  Math.random() * Totall.TotalConfirmed,
-                  Math.random() * Totall.TotalConfirmed,
-                  Math.random() * Totall.TotalConfirmed,
-                  Math.random() * Totall.TotalConfirmed,
+                  numbers[0],
+                  numbers[1],
+                  numbers[2],
+                  numbers[3],
+                  numbers[4],
+                  numbers[5],
                 ],
               },
             ],
           }}
-          width={400} // from react-native
+          width={375} // from react-native
           height={400}
           yAxisLabel=""
           yAxisSuffix="k"
@@ -59,7 +53,7 @@ export default function Chart() {
           }}
           bezier
           style={{
-            marginVertical: 8,
+            marginVertical: 16,
             borderRadius: 16,
           }}
         />

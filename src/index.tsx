@@ -8,7 +8,7 @@ import actions from '../redux/actions/index';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from './navigation/StackNavigator';
 
-const {fetchCountries}: any = actions;
+const {fetchCountries, fetchAll}: any = actions;
 
 export default function Home() {
   type homeScreenProp = StackNavigationProp<RootStackParamList, 'HomePage'>;
@@ -23,6 +23,7 @@ export default function Home() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCountries());
+    dispatch(fetchAll());
   }, []);
   if (isFethingCountries) {
     return (
