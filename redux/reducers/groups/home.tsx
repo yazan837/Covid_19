@@ -2,7 +2,12 @@ import actions from '../../actions/index';
 import {combineReducers} from 'redux';
 import reactotron from 'reactotron-react-native';
 
-const {FETCH_COUNTRIES, COMPLETE_FETCH_COUNTRIES}: any = actions;
+const {
+  FETCH_COUNTRIES,
+  COMPLETE_FETCH_COUNTRIES,
+  FETCH_ALL,
+  COMPLETE_FETCH_ALL,
+}: any = actions;
 
 const initState = false;
 
@@ -39,6 +44,15 @@ const Countries = (state = [], action: any) => {
       return state;
   }
 };
+const Total = (state = {}, action: any) => {
+  switch (action.type) {
+    case COMPLETE_FETCH_ALL:
+      return action.data;
+
+    default:
+      return state;
+  }
+};
 const TopFive = (state = [], action: any) => {
   switch (action.type) {
     case COMPLETE_FETCH_COUNTRIES:
@@ -56,4 +70,5 @@ export default combineReducers({
   isFethingCountries,
   isFethingCountriesError,
   TopFive,
+  Total,
 });

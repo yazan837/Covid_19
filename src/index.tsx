@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, ActivityIndicator} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useDispatch, RootStateOrAny, useSelector} from 'react-redux';
 import reactotron from 'reactotron-react-native';
@@ -16,11 +16,22 @@ export default function Home() {
   const TopCountries = useSelector(
     (state: RootStateOrAny) => state.home.TopFive,
   );
+  const isFethingCountries = useSelector(
+    (state: RootStateOrAny) => state.home.isFethingCountries,
+  );
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCountries());
   }, []);
+  if (isFethingCountries) {
+    return (
+      <View style={{alignSelf: 'center', justifyContent: 'center'}}>
+        <ActivityIndicator size={'large'} color={'black'} />
+      </View>
+    );
+  }
+
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
       <TouchableOpacity
@@ -51,6 +62,11 @@ export default function Home() {
         )}
         <TouchableOpacity onPress={() => navigation.navigate('CountriesList')}>
           <Text style={styles.seeMore}>See More</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{marginTop: 25}}
+          onPress={() => navigation.navigate('Chart')}>
+          <Text style={styles.seeMore}>See Charts</Text>
         </TouchableOpacity>
       </View>
     </View>

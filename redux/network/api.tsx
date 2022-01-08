@@ -15,7 +15,7 @@ const request = async (method: any, endpoint: any) => {
     .then(res => {
       return {
         networkSuccess: 200,
-        data: res.Countries,
+        data: res,
       };
     })
     .catch(e => ({networkSuccess: false}));
